@@ -1,3 +1,11 @@
+
+// Install:
+ - Microsoft.EntityFrameworkCore.SqlServer
+ - Microsoft.EntityFrameworkCore.Tools
+ - Bricelam.EntityFrameworkCore.Pluralizer --> this will
+ // change the names in BookStoresDBContext from (Author, Book,...) to
+ // (Authors, Books,....) Make them plural
+
 Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
 
