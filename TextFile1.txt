@@ -1,0 +1,32 @@
+Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+
+// To force it
+Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+
+// After we add the connection string to appsettings.json
+Scaffold-DbContext -Connection Name=BookStoresDB Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
