@@ -7,16 +7,13 @@
  // (Authors, Books,....) Make them plural
 
  // Add the database to the project
-Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;"
-Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
 // If you change the databse and you want to force it
-Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;"
-Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
 
 // After we add the connection string to appsettings.json
-Scaffold-DbContext -Connection Name=BookStoresDB
-Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+Scaffold-DbContext -Connection Name=BookStoresDB Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
 
 // Add the following to Startup.cs
 services.AddDbContext<BookStoresDBContext>(options =>
