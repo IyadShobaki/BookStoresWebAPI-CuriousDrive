@@ -6,15 +6,32 @@
  // change the names in BookStoresDBContext from (Author, Book,...) to
  // (Authors, Books,....) Make them plural
 
-Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+ // Add the database to the project
+Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;"
+Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
-
-// To force it
-Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
-
+// If you change the databse and you want to force it
+Scaffold-DbContext "Server=DESKTOP-ADUFVDJ;Database=BookStoresDB;Trusted_Connection=true;"
+Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
 
 // After we add the connection string to appsettings.json
-Scaffold-DbContext -Connection Name=BookStoresDB Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+Scaffold-DbContext -Connection Name=BookStoresDB
+Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+// Add the following to Startup.cs
+services.AddDbContext<BookStoresDBContext>(options =>
+                   options.UseSqlServer(Configuration
+                          .GetConnectionString("BookStoresDB")));
+
+
+
+// Install Microsoft.AspNetCore.Mvc.NewtonsoftJson package
+// then add service.AddMvc(options => ....... ) to Startup.cs
+//  services.AddMvc(option => option.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                .AddNewtonsoftJson(opt => opt
+                                  .SerializerSettings
+                                  .ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 
 
