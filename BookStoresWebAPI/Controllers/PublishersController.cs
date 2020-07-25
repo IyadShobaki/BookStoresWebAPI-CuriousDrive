@@ -73,7 +73,7 @@ namespace BookStoresWebAPI.Controllers
                 .Include(pub => pub.Books)
                     .ThenInclude(book => book.Sales)
                 .Include(pub => pub.Users)
-                    .ThenInclude(user => user.Job)
+                    //.ThenInclude(user => user.Job)
                 .Where(pub => pub.PubId == publisher.PubId)
                 .FirstOrDefaultAsync();
 
@@ -106,7 +106,7 @@ namespace BookStoresWebAPI.Controllers
             _context.Entry(publisher)
                     .Collection(pub => pub.Users)
                     .Query()
-                    //.Where(usr => usr.EmailAddress.Contains("karin")) 
+                    .Where(usr => usr.EmailAddress.Contains("karin")) 
                     .Load();
 
             _context.Entry(publisher)
@@ -115,11 +115,11 @@ namespace BookStoresWebAPI.Controllers
                     .Include(book => book.Sales)
                     .Load();
 
-            //var user = await _context.Users.SingleAsync(usr => usr.UserId == 1);
+            var user = await _context.Users.SingleAsync(usr => usr.UserId == 1);
 
-            //_context.Entry(user)
-            //        .Reference(usr => usr.Role)
-            //        .Load();
+            _context.Entry(user)
+                    .Reference(usr => usr.Role)
+                    .Load();
 
 
             if (publisher == null)
